@@ -1,7 +1,7 @@
 from typing import Union, List, Dict
 from fastapi import APIRouter, Query, Body, status
 from schema.Preferences import Preferences
-from services.perferences import (
+from services.preferences import (
     create_preferences,
     find_preferences_of_a_user,
     modify_preferences_of_a_user,
