@@ -16,13 +16,23 @@ router = APIRouter(
 )
 
 
-@router.post("/", status_code=status.HTTP_201_CREATED, response_model=Preferences)
+@router.post(
+    "/",
+    status_code=status.HTTP_201_CREATED,
+    response_description="Create a set of preferences.",
+    response_model=Preferences,
+)
 async def post_preferences(preferences: Preferences) -> Preferences:
     result = await create_preferences(preferences)
     return result
 
 
-@router.get("/", status_code=status.HTTP_200_OK, response_model=Preferences)
+@router.get(
+    "/",
+    response_description="Get a set of preferences.",
+    status_code=status.HTTP_200_OK,
+    response_model=Preferences,
+)
 async def get_preferences_for_one_user(
     q: Union[str, None] = Query(default=None, min_length=24, max_length=25)
 ) -> Preferences:
@@ -30,7 +40,12 @@ async def get_preferences_for_one_user(
     return result
 
 
-@router.patch("/", status_code=status.HTTP_200_OK, response_model=Preferences)
+@router.patch(
+    "/",
+    status_code=status.HTTP_200_OK,
+    response_description="Update a set of preferences.",
+    response_model=Preferences,
+)
 async def patch_preferences(
     body: Dict, q: Union[str, None] = Query(default=None, min_length=24, max_length=25)
 ) -> Preferences:
@@ -38,9 +53,14 @@ async def patch_preferences(
     return result
 
 
-@router.delete("/", status_code=status.HTTP_200_OK, response_model=Preferences)
+@router.delete(
+    "/",
+    status_code=status.HTTP_200_OK,
+    response_description="Delete a set of preferences",
+    response_model=Preferences,
+)
 async def delete_preferences(
-    body: Dict, q: Union[str, None] = Query(default=None, min_length=24, max_length=25)
+    q: Union[str, None] = Query(default=None, min_length=24, max_length=25)
 ) -> Preferences:
-    result = await delete_preferences_of_a_user(q, body)
+    result = await delete_preferences_of_a_user(q)
     return result
