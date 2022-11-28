@@ -1,0 +1,197 @@
+{
+	"info": {
+		"_postman_id": "16d149ed-fa36-4c99-8058-4cd6fc05618c",
+		"name": "Users",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10997680"
+	},
+	"item": [
+		{
+			"name": "Create user Marion",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"marion\",\n    \"email\": \"marion@mail.com\",\n    \"password\": \"marionmarion\",\n    \"role\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/api/users/",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create user Mona",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"mona\",\n    \"email\": \"mona@mail.com\",\n    \"password\": \"monamona\",\n    \"role\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/api/users",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"users"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[FAIL] Create user (email not valid)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"marion\",\n    \"email\": \"marionmail\",\n    \"password\": \"marionmarion\",\n    \"role\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/api/users/",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "All users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}/api/users/",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"users",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get user Marion",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}/api/users/637cd7e6bdf45b194885baf7",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"637cd7e6bdf45b194885baf7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update user Marion",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"username\": \"mari0n\",\n    \"email\": \"marion@mail.fr\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/api/users/637cd7e6bdf45b194885baf7",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"637cd7e6bdf45b194885baf7"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete user Mona",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}/api/users/637cdb7f3556490f7fd69b21",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"637cdb7f3556490f7fd69b21"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "[FAIL] Get user Mona",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}/api/users/637cd7e6bdf45b124885baf7",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"637cd7e6bdf45b124885baf7"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

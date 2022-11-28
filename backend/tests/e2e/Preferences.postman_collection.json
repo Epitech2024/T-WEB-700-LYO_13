@@ -1,0 +1,69 @@
+{
+	"info": {
+		"_postman_id": "e59e2c3a-9d92-48af-847c-34852860868e",
+		"name": "Preferences",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "10997680"
+	},
+	"item": [
+		{
+			"name": "Get preferences of a user",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}/api/preferences/?q=637cd7e6bdf45b194885baf7",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"preferences",
+						""
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "637cd7e6bdf45b194885baf7"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Modify preferences of a user",
+			"request": {
+				"method": "PATCH",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"selected_crypto\": [\"bitcoin\", \"dogecoin\"]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{HOST}}/api/users/?q=637cd7e6bdf45b194885baf7",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"users",
+						""
+					],
+					"query": [
+						{
+							"key": "q",
+							"value": "637cd7e6bdf45b194885baf7"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
