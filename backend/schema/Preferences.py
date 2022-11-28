@@ -1,7 +1,9 @@
-from typing import List
-from pydantic import BaseModel, Field
+from pydantic import BaseModel
 
 
 class Preferences(BaseModel):
-    selected_crypto: set[str] = set()
-    article_keywords: set[str] = set()
+    selected_crypto: set[str] = None
+    article_keywords: set[str] = None
+
+    class Config:
+        orm_mode=True

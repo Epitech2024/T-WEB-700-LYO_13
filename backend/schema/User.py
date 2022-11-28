@@ -1,16 +1,19 @@
 import re
 from typing import Union
-from pydantic import BaseModel, Field, validator
+from pydantic import BaseModel, validator
 from .Preferences import Preferences
 from .Global_Preferences import Global_Preferences
 
 
 class User(BaseModel):
-    username: str = Field(unique=True)
-    email: str = Field(unique=True)
-    password: str = Field(...)
-    role: int = Field(...)
+    username: str = None
+    email: str = None
+    password: str = None
+    role: int = None
     preferences: Union[Preferences, Global_Preferences, None] = None
+
+    class Config:
+        orm_mode=True
 
     @validator("username")
     def username_must_be_alphanum(value):
@@ -24,4 +27,3 @@ class User(BaseModel):
         if not re.match(regex, value):
             raise ValueError("Input value is not a valid email address.")
         return value
-    
