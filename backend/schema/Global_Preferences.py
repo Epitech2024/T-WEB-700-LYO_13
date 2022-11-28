@@ -3,7 +3,10 @@ from pydantic import BaseModel, Field
 
 
 class Global_Preferences(BaseModel):
-    n_crypto: int = Field()
-    k_articles: int = Field()
-    list_crypto: set[str] = set()
-    list_sources: set[str] = set()
+    n_crypto: int = None
+    k_articles: int = None
+    list_crypto: set[str] = None
+    list_sources: set[str] = None
+
+    class Config:
+        orm_mode = True

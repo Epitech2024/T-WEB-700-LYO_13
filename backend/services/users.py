@@ -45,21 +45,17 @@ async def modify_user(id: str, body: object) -> User:
     user: User
         Dictionary describing a user.
     """
-    print(id)
-    stored_user = await collection.find({"_id": ObjectId(id)})
-    print(stored_user)
-    try:
-        user_model = User(**stored_user)
-        updated_data = body.dic(exclude_unset=True)
-        updated_user = user_model.copy(update=updated_data)
-        updated_user = jsonable_encoder(updated_user)
-        user = await collection.update_one(
-            {"_id": ObjectId(id)}, {"$set": updated_user}
+    stored_user = collection.find_one({"_id": ObjectId(id)})
+    if not stored_user:
+        raise HTTPException(
+            status_code=500, detail="User was not found in the database."
         )
-        return list(user)[0]
-    except Exception as e:
-        print(e)
-        raise HTTPException(status=403, detail="User schema error.")
+    user_model = User(**stored_user)
+    updated_data = body.dict(exclude_unset=True)
+    updated_user = user_model.copy(update=updated_data)
+    updated_user = jsonable_encoder(updated_user)
+    collection.update_one({"_id": ObjectId(id)}, {"$set": updated_user})
+    return updated_user
 
 
 async def remove_user(id: str) -> User:
@@ -77,6 +73,10 @@ async def remove_user(id: str) -> User:
         Dictionary describing a user.
     """
     user = collection.delete_one({"_id": ObjectId(id)})
+    if not user:
+        raise HTTPException(
+            status_code=500, detail="User was not found in the database."
+        )
     return user
 
 
@@ -95,7 +95,12 @@ async def find_one_user(id: str) -> User:
         Dictionary describing a user.
     """
     user = collection.find_one({"_id": ObjectId(id)})
-    return user
+    if user:
+        return user
+    else:
+        raise HTTPException(
+            status_code=500, detail="User was not found in the database."
+        )
 
 
 async def find_all_users() -> List[User]:

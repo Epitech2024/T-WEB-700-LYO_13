@@ -6,11 +6,14 @@ from .Global_Preferences import Global_Preferences
 
 
 class User(BaseModel):
-    username: str = Field(unique=True)
-    email: str = Field(unique=True)
-    password: str = Field(...)
-    role: int = Field(...)
+    username: str = None
+    email: str = None
+    password: str = None
+    role: int = None
     preferences: Union[Preferences, Global_Preferences, None] = None
+
+    class Config:
+        orm_mode=True
 
     @validator("username")
     def username_must_be_alphanum(value):
