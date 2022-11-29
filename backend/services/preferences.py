@@ -7,6 +7,7 @@ from schema.Preferences import Preferences
 from config.database import collection
 
 
+
 async def create_preferences(preferences: Preferences) -> Preferences:
     """
     Create a new preferences set for a specific user

@@ -14,6 +14,6 @@ client = MongoClient(
 database = client[os.environ.get("MONGO_DB_NAME")]
 collection = database.users
 
-# ------- Constraints -------
+#------- Constraints -------
 collection.create_index([("email", pymongo.ASCENDING)], unique=True)
 collection.create_index([("username", pymongo.ASCENDING)], unique=True)
